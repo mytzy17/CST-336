@@ -1,0 +1,34 @@
+body{
+	margin: 10px 0px auto auto;
+	text-align: center;
+}
+
+.notfound {
+	color: red;
+	text-align: center;
+}
+
+.portrait{
+	width: 100%;
+	height: 100%;
+}
+
+.info {
+	margin-left: 50px;
+	font-size: 15px;
+	text-align: justify;
+}
+
+.info > .bio {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.jumbotron{
+	background-color: #ccccff;
+}
+.container{
+	background-color: #ccff99;
+}
+h1{
+	color: #b300b3;
+}

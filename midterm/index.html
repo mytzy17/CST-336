@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Open Library </title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                 <!--Used Bootstrap for style-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+         <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    </head>
+    <body>
+        <div class="container" class="flex-container"></div>
+            <div class ="jumbotron">
+                <h1>Open Library</h1>
+                <p>Please enter the ISBN of the book you'd like to retrieve</p>
+                <form>
+                    <label for ="isbn" class="col-sm-2">ISBN</label>
+                    <input type="text" id ="" name="book" class="col-sm-4">
+                    <button id="button" type="submit" class="btn btn-primary mb-6" class="col-sm-6">Query</button>
+                </form>
+         </div>
+         <script>
+            //variables I will be using
+            var isbn = $("#isbn");
+            var title = $("#title");
+            var author = $("#author");
+            var publish = $("#publish");
+            var publisher = $("#publisher");
+            var pages = $("#pages");
+
+            //everytime you press generate again it will change
+            $("#button").on("click", function(){
+                var isbn = $("#isbn").val();
+                console.log(isbn);
+
+                $.ajax({
+                    method: "GET",
+                    url: "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&format=json&jscmd=data",
+                    dataType: "json",
+                    data: {
+                        "title": $("#title").val(),
+                        "Author": $("#author").val(),
+                        "Publish": $("#publish").val(),
+                        "Publisher": $("#publisher").val(),
+                        "ISBN": $("#isbn").val(),
+                        "Pages": $("#pages").val()
+                    },
+                    success: function(data){
+                        console.log(data);
+                        data.bibkeys.forEach(function(link){
+                            var imageElm = '<div class="img-thumbnail flex-item"><img src="' + link + '"></div>';
+                                $(".flex-container").append(imageElm);
+                        });
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });//ajax
+            });//button generator
+         </script>
+       </body>
+</html>

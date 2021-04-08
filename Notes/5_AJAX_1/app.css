@@ -1,0 +1,22 @@
+.jumbotron {
+	color: #2c3e50;
+	background: #ecf0f1
+}
+
+img {
+	width: 100%;
+}
+
+.details {
+	border: 2px solid #5d98fc;
+	text-align: justify;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.error {
+	border: 2px solid #f54831;
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 20px;
+}

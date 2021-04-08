@@ -1,0 +1,14 @@
+.jumbotron {
+	color: #2c3e50;
+	background: #ecf0f1;
+}
+
+.cover {
+	border: 5px solid;
+	border-radius: 10px;
+}
+
+.info {
+	margin: 50px;
+	font-size: 25px;
+}

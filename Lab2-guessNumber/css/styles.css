@@ -1,0 +1,25 @@
+body{
+    text-align:center;
+    background-image: url("../img/nums.jpg");
+    background-size: cover;
+    color: #99ccff;
+}
+
+.jumbotron {
+    background-color:#ffffb3;
+    color: #cc99ff;
+}
+
+#directions {
+    background-color:#ffffb3;
+    font-size: 2em;    
+    width:900px;
+    height:400px;
+    margin:0 auto;
+    border-radius:20px;
+}
+h1{
+    font-family: 'Shojumaru', 'cursive';
+    font-size:5em;
+    margin-bottom:0px;
+}

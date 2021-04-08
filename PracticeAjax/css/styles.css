@@ -1,0 +1,21 @@
+h2{
+    font-size: 12px;
+}
+/*img{*/
+/*    width: 25%;*/
+/*    height: 25%;*/
+/*}*/
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.flex-item {
+	width: 30%;
+	margin: 10px;
+}
+
+.flex-item > img {
+	width: 100%;
+}

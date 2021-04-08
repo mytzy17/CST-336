@@ -1,0 +1,45 @@
+body{
+    background-color: #E05500;
+    text-align: center;
+}
+p{
+    font-size: 20px;
+    color: #B4AEDF;
+}
+img{
+    float: left;
+}
+/*Navigation Bar*/
+li a:hover:not(.active) {
+  background-color: #F65329;
+}
+.active {
+  background-color: #E05500;
+}
+#color1{
+    color:#123AB1;
+    font-size: 20px;
+}
+#color2{
+    color:#123AB1;
+    font-size: 20px;
+}
+#color3{
+    color:#123AB1;
+    font-size: 20px;
+}
+#color4{
+    color:#123AB1;
+    font-size: 20px;
+}
+#color5{
+    color:#123AB1;
+    font-size: 20px;
+}
+h1{
+    color: #77BEF1;
+}
+div{
+    font-size: 25px;
+    color: #14DB2D;
+}

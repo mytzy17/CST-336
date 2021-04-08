@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Doggies Images </title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                 <!--Used Bootstrap for style-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+         <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    </head>
+    <body class="text-center">
+        <div class ="jumbotron">
+            <h1>Random Dog Gallery</h1>
+            <h2>Please enter the number of random images you'd like to generate</h2>
+            <label for ="images" class="col-sm-2">Number of images</label>
+            <input type="text" id ="images" name="images">
+            <button id="button" type="submit" class="btn btn-primary mb-2">Generate</button>
+        </div>
+        <div id ="body" class="flex-container"></div>
+        <script>
+            //variables I will be using
+            var images = $("#images");
+            //everytime you press generate again it will change
+            $("#button").on("click", function(){
+                images = $("#images").val();
+                console.log(images);
+                
+                $.ajax({
+                    method: "GET",
+                    url: "https://dog.ceo/api/breeds/image/random/" + images,
+                    dataType: "json",
+                    success: function(data){
+                        console.log(data);
+                        data.message.forEach(function(link){
+                            var imageElm = '<div class="img-thumbnail flex-item"><img src="' + link + '"></div>';
+                                $(".flex-container").append(imageElm);
+                        });
+                        //for(var i = 0; i < images; i++){
+                            // $("#body").append('<div class="img-thumbnail flex-item"> <img src="' + data["message"][i] + '"></div>');
+                            //  $(".flex-container").append('<div class="img-thumbnail flex-item"> <img src="' + link + '"></div>');
+                        //}
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });//ajax
+            });//button generator
+        </script>
+    </body>
+</html>

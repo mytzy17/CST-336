@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sign Up Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!--Used Bootstrap for style-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body class="text-center">
+        <div class="jumbotron text-center">
+        <h1 class="text-primary">Sign up</h1>
+        </div>
+        <form id="signupForm" method="get" action="welcome.html">
+            <!--<div class="row">-->
+            <!--    <div class = "col"></div>-->
+            <!--        First Name:     <input type="text" name="fName"><br>-->
+            <!--</div>-->
+            <!--<div class = "col"></div>-->
+            <!--Last Name:      <input type="text" name="lName"><br>-->
+            <!--</div>-->
+            <div class="row" class="form-control form-control-sm">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Last name">
+                </div>
+            </div>
+            <div class="form-group">
+            Gender:         <input type="radio" name="gender" value="m">Male
+                            <input type="radio" name="gender" value="f">Female<br><br>
+            </div>
+            <!--<div class="form-group">-->
+            <!--Zipcode:        <input type="text" name="zip" id="zip"><br>-->
+            <!--                <span id="zipError"></span><br>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--City:           <span id="city"></span><br>-->
+            <!--</div>-->
+            <div class="row" class="form-control form-control-sm">
+                <div class="col">
+                  <input type="text"  name="zip" id="zip" class="form-control" placeholder="Zipcode">
+                  <span id="zipError"></span><br>
+                </div>
+                <div class="col">
+                  City: <span id="city"></span><br>
+                </div>
+            </div>
+            <div class="form-group">
+            State:
+            <select id="state" name="state" class="custom-select">
+                <option value="">Select One</option>
+                <option value="ca"> California</option>
+                <option value="ny">New York</option>
+                <option value="tx">Texas</option>
+            </select><br />
+            </div>
+            <div class="form-group">
+            Latitude:       <span id="latitude"></span><br>
+            </div>
+            <div class="form-group">
+            Longitude:      <span id="longitude"></span><br>
+            </div>
+            <div class="form-group">
+            Select a County: <select id="county" class="custom-select"></select><br><br>
+            </div>
+            <div class="form-group">
+            Desired Username: <input type="text" id="username" name="username" placeholder="claraHey156">
+                                <span id="usernameError"></span><br>
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--Password: <input type="password" id="password" name="passsword" placeholder="clara123"><br>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--Password Again: <input type="password" id="passwordAgain">-->
+            <!--                <span id="passwordAgainError"></span><br /><br>-->
+            <!--</div>-->
+            <div class="row" class="form-control form-control-sm">
+                <div class="col">
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Type in Password">
+                </div>
+                <div class="col">
+                  <input type="password" id="passwordAgain" class="form-control" placeholder="Type in Password Again"><br>
+                  <span id="passwordAgainError"></span><br /><br>
+                </div>
+            </div>
+            <div class="col-auto">
+            <input type="submit" class="btn btn-primary mb-2" value="Sign up!">
+            </div>
+            
+        </form>
+            <script>
+                var usernameAvailable = false;
+                    //Displaying the states
+                    $.ajax({
+                        method: "GET",
+                            url: "https://itcdland.csumb.edu/~milara/ajax/states.php",
+                        dataType: "json",
+                        success: function(result, status){
+                            $("#state").html("<option> Select One </option>");
+                            result.forEach(function(i){
+                                $("#state").append("<option value=" + i.usps.toLowerCase() + ">" + i.state + "</option>");
+                                
+                                
+                            });
+                        }
+                    });//ajax
+                //Displaying City from API after typing a zip code
+                $("#zip").on("change",function(){
+                    // alert($("#zip").val());
+                    $.ajax({
+                        method: "GET",
+                            url: "https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+                        dataType: "json",
+                            data: { "zip": $("#zip").val()},
+                        success: function(result, status){
+                            // alert(result.city);
+                               if(result == false){
+                                    $("#zipError").html("Zip code not found.");
+                                    $("#zipError").css("color", "red");
+                                }else{
+                                    $("#zipError").html("Zip code found!");
+                                    $("#zipError").css("color", "green");
+                                    $("#city").html(result.city);
+                                    $("#latitude").html(result.latitude);
+                                    $("#longitude").html(result.longitude);
+                            }
+                        }
+                    });//ajax
+                });//zip
+                $("#state").on("change", function(){
+                    //alert($("#state").val());
+                    $.ajax({
+                        method: "GET",
+                            url: "https://itcdland.csumb.edu/~milara/ajax/countyList.php",
+                        dataType: "json",
+                            data: { "state": $("#state").val()},
+                        success: function(result, status){
+                            //alert(result[0].county);
+                            $("#county").html("<option> Select One </option>");
+                            // for(let i = 0; i < result.length; i++){
+                            //     $("#county").append("<option>" + result[i].county + "</option>");
+                            // }
+                            result.forEach(function(i){
+                                $("#county").append("<option>" + i.county + "</option>");
+                            });
+                        }
+                    });//ajax
+                });//state
+                
+                $("#username").change(function(){
+                    //alert($("#username").val());
+                    $.ajax({
+                        method:"GET",
+                            url: "https://cst336.herokuapp.com/projects/api/usernamesAPI.php",
+                        dataType: "json",
+                            data: { "username":$("#username").val()},
+                        success: function(result, status){
+                            
+                            if(result.available){
+                                $("#usernameError").html("Username is available!");
+                                $("#usernameError").css("color", "green");
+                                usernameAvailable = true;
+                            }else{
+                                $("#usernameError").html("Username is unavailable!");
+                                $("#usernameError").css("color", "red");
+                                usernameAvailable = false;
+                            }
+                        }
+                    });//ajax
+                });//username
+                
+                $("#signupForm").on("submit", function(e){
+                    //alert("Submitting form...");
+                    if(!isFormValid()){
+                        event.preventDefault();
+                    }
+                });
+                function isFormValid(){
+                    var isValid = true;
+                    if(!usernameAvailable){
+                        isValid = false;
+                    }
+                    if($("#username").val().length == 0){
+                        isValid = false;
+                        $("#usernameError").html("Username is required");
+                        $("#usernameError").css("color", "red");
+                    }
+                    if($("#password").val().length < 6){
+                        isValid = false;
+                        $("#passwordAgainError").html("Password needs 6 characters or more!");
+                        $("#passwordAgainError").css("color", "red");
+                    }
+                    if($("#password").val() != $("#passwordAgain").val()){
+                        $("#passwordAgainError").html("Password Mismatch!")
+                        isValid = false;
+                    }
+                    return isValid;
+                }
+            </script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    </body>
+</html>

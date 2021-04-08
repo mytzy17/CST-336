@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>CSUMB</title>
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>California State University, Monterey Bay</h1>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+				<img src="data/csumb.jpg"/>
+			</div>
+			<div class="col-sm-4">
+				<div id="details-text"></div>
+				<button id="more-details-btn" class="btn btn-info">More Details</button>
+				<button id="todoList-details-btn" class="btn btn-info" >TODO List</button>
+				<button id="scd-details-btn" class="btn btn-info" hidden>SCD Details</button>
+			</div>
+		</div>
+	<!--</div>-->
+	<!--<div class = "todo">-->
+	<!--	<div id = "todo2">-->
+	<!--		<h1>To-do List</h1>-->
+	<!--		<input type = "text" placeholder="Add New Todo List">-->
+	<!--		<ul>-->
+	<!--			<li>Buy Grocery</li>-->
+	<!--			<li>Buy Stamp</li>-->
+	<!--			<li>Get Mail</li>-->
+	<!--		</ul>-->
+	<!--	</div>-->
+	
+	<!--</div>-->
+	
+	<div id="myDIV" class="header">
+  		<h2 style="margin:5px">My To Do List</h2>
+  		<input type="text" id="myInput" placeholder="Write down your list...">
+  		<span onclick="newElement()" class="addBtn">Add To List</span>
+	</div>
+
+	<ul id="myUL">
+	  <li>Hit the gym</li>
+	  <li class="checked">Pay bills</li>
+	  <li>Go to store</li>
+	  <li>Buy juice</li>
+	  <li>Read Chapter 1</li>
+	  <li>Organize my room</li>
+	</ul>
+<script>
+
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

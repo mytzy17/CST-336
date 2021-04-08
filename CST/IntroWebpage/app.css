@@ -1,0 +1,39 @@
+/*h1
+{
+    color:red;
+}
+img
+{
+    width: 300px;
+    height: 200px;
+    border: 10px solid;
+}
+.favorite
+{
+    border: 2px solid #cccf0a;
+    border-radius: 10px;
+}*/
+
+.jumbotron{
+    color: #2c3e50;
+    background: #ecf0f1;
+}
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.flex-item{
+    width: 30%;
+    margin: 10px;
+}
+.flex_item > img{
+    width: 100%;
+}
+.navbar-inverse{
+    background: #2c3e50;
+    color: white;
+}
+.navbar-inverse .navbar-brand{
+    color: white;
+}

@@ -1,0 +1,21 @@
+h1{
+    color: white !important;
+    background-color: grey;
+}
+body{
+    background-color: pink;
+}
+#keyword{
+   background-color: yellow;
+}
+#ori{
+    background-color: lightblue;
+}
+
+#button{
+    background-color: lightgreen;
+}
+img{
+    width: 25%;
+    height: 25%;
+}

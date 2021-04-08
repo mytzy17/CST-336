@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pixabay Image Search </title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                 <!--Used Bootstrap for style-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+         <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    </head>
+    <body class="text-center">
+        <h1>Pixabay Image Search</h1>
+            <label for="keyword"><b>Keyword:</b></label>
+            <input type="text" id="keyword" name="keyword">
+            <br>
+            <label for="ori"><b>Orientation:</b></label>
+            <select id="ori" name="ori">
+            <option value="">Select One</option>
+            <option value="horizontal">Horizonatal</option>
+            <option value="vertical">Vertical</option>
+            </select>
+            <button id = "button" type="submit" class="btn btn-primary mb-2">Search</button>
+            <h2 id = "hello" ></h2>
+        <div id = "full"></div>
+        <script src = "js/functions.js"></script>
+    </body>
+</html>
